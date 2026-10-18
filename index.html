@@ -186,7 +186,11 @@ body:not(.ready) .hero * { animation-play-state: paused; }
 .stage[data-active="0"] .ch-dots li:nth-child(1)::after, .stage[data-active="1"] .ch-dots li:nth-child(2)::after, .stage[data-active="2"] .ch-dots li:nth-child(3)::after { background: var(--plum); }
 @media (max-width: 860px) {
   .story-grid { grid-template-columns: 1fr; grid-template-rows: auto 1fr; padding-top: 74px; padding-bottom: 20px; gap: 6px; align-items: start; }
-  .plate { width: min(74vw, 36vh, 340px); }
+  .plate { width: min(66vw, 31vh, 300px); }
+  .story-grid { padding-bottom: 96px; }
+  .sizes { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .size small { font-size: .56rem; letter-spacing: .1em; white-space: nowrap; }
+  .ch .btn { display: none; }
   .ch-copy { min-height: 0; height: 100%; }
   .ch { justify-content: flex-start; }
   .ch h2 { font-size: 2rem; margin-top: .1em; }
@@ -488,7 +492,7 @@ document.getElementById('marquee').innerHTML = line + line;
 const small = matchMedia('(max-width: 860px)').matches;
 document.getElementById('chImgs').innerHTML = SIGS.map((s, i) => `<img class="ch-img" data-ch="${i}" src="${IMG + s.img}.png" alt="${esc(s.name)}">`).join('');
 document.getElementById('chCopy').innerHTML = SIGS.map((s, i) => {
-  const show = small ? 5 : s.flav.length;
+  const show = small ? 4 : s.flav.length;
   return `<article class="ch" data-ch="${i}">
     <div class="eyebrow">Chapter ${i + 1} of 3</div>
     <h2>${esc(s.name)}</h2>
