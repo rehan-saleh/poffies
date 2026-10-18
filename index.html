@@ -66,7 +66,7 @@ h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(2.2rem, 5.4vw
   clip-path: circle(150% at 50% 50%); transition: clip-path 1s cubic-bezier(.7, 0, .2, 1); }
 #loader.out { clip-path: circle(0% at 50% 50%); }
 .loader-ring { position: relative; width: min(64vw, 300px); aspect-ratio: 1; }
-.loader-ring svg { position: absolute; inset: 0; width: 100%; height: 100%; animation: turn 9s linear infinite; }
+.loader-ring svg { position: absolute; left: 0; top: 0; width: 100%; height: 100%; transform-origin: 50% 50%; animation: turn 9s linear infinite; }
 .loader-ring svg text { font: 600 22px var(--sans); letter-spacing: 6px; fill: var(--gold-soft); text-transform: uppercase; }
 .loader-ring img { position: absolute; left: 12%; right: 12%; top: 50%; width: 76%; aspect-ratio: 3.1 / 1; object-fit: cover; transform: translateY(-50%); animation: breathe 1.4s ease-in-out infinite alternate; }
 @keyframes breathe { to { transform: translateY(-50%) scale(1.06); } }
@@ -139,14 +139,14 @@ body:not(.ready) .hero * { animation-play-state: paused; }
 #rings { height: calc(var(--vh) * 2.6); background: var(--cream); }
 #rings .stage { display: grid; place-items: center; }
 .ringset { position: relative; width: min(90vw, 74vh, 700px); aspect-ratio: 1; transform: scale(.85); will-change: transform, opacity; }
-.ringset svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.ringset svg { position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: visible; transform-origin: 50% 50%; }
 .ringset text { font-family: var(--sans); font-weight: 600; text-transform: uppercase; fill: var(--plum); }
 .ringset svg.ring { will-change: transform; }
 .ringset .line { fill: none; stroke: color-mix(in srgb, var(--plum) 22%, transparent); stroke-width: 1; }
 .ring-dish { position: absolute; left: 50%; top: 50%; width: min(56vw, 56vh, 440px); aspect-ratio: 1; margin: calc(min(56vw, 56vh, 440px) / -2) 0 0 calc(min(56vw, 56vh, 440px) / -2); border-radius: 50%;
   transform: scale(.26); will-change: transform; display: grid; place-items: center; z-index: 5; }
 .ring-dish::before { content: ""; position: absolute; inset: 0; border-radius: 50%; background: var(--white); box-shadow: inset 0 0 0 10px var(--blush), inset 0 0 0 12px var(--gold-soft), 0 30px 60px -20px rgba(76, 35, 80, .35); }
-.ring-dish img { position: relative; width: 86%; filter: drop-shadow(0 16px 16px rgba(76, 35, 80, .3)); }
+.ring-dish img { position: relative; width: 86%; height: auto; filter: drop-shadow(0 16px 16px rgba(76, 35, 80, .3)); }
 .ring-caption { position: absolute; left: 0; right: 0; bottom: 4%; text-align: center; z-index: 3; padding-inline: 20px; opacity: 0; will-change: transform, opacity; }
 .ring-caption .script { font-size: clamp(1.4rem, 3vw, 2rem); margin: 0; }
 .wipe { position: absolute; left: 50%; top: 50%; z-index: 4; width: var(--diag, 150vmax); height: var(--diag, 150vmax); translate: -50% -50%; border-radius: 50%; background: var(--tone-0); transform: scale(0); will-change: transform; }
@@ -160,9 +160,9 @@ body:not(.ready) .hero * { animation-play-state: paused; }
 .story-grid { height: 100%; display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: clamp(20px, 5vw, 70px); max-width: 1180px; margin: 0 auto; padding: 90px var(--gutter-r) 40px var(--gutter-l); }
 .plate { position: relative; width: min(100%, 62vh, 520px); aspect-ratio: 1; justify-self: center; }
 .plate::before { content: ""; position: absolute; inset: 4%; border-radius: 50%; background: var(--white); box-shadow: inset 0 0 0 14px color-mix(in srgb, var(--white) 50%, var(--blush)), inset 0 0 0 16px var(--gold-soft), 0 40px 70px -30px rgba(76, 35, 80, .45); }
-.plate .orbit { position: absolute; inset: -4%; will-change: transform; }
+.plate .orbit { position: absolute; left: 50%; top: 50%; width: 108%; height: 108%; margin: -54% 0 0 -54%; transform-origin: 50% 50%; will-change: transform; }
 .plate .orbit text { font: 600 13px var(--sans); letter-spacing: 5px; fill: var(--plum-soft); text-transform: uppercase; }
-.ch-img { position: absolute; inset: 12%; width: 76%; margin: auto; opacity: 0; transform: rotate(-70deg) scale(.6); transition: transform .8s cubic-bezier(.2, 1.2, .3, 1), opacity .5s; filter: drop-shadow(0 22px 20px rgba(76, 35, 80, .3)); }
+.ch-img { position: absolute; left: 12%; top: 12%; width: 76%; height: 76%; object-fit: contain; opacity: 0; transform: rotate(-70deg) scale(.6); transition: transform .8s cubic-bezier(.2, 1.2, .3, 1), opacity .5s; filter: drop-shadow(0 22px 20px rgba(76, 35, 80, .3)); }
 .stage[data-active="0"] .ch-img[data-ch="0"], .stage[data-active="1"] .ch-img[data-ch="1"], .stage[data-active="2"] .ch-img[data-ch="2"] { opacity: 1; transform: none; }
 .ch-copy { position: relative; min-height: 420px; min-width: 0; }
 .ch { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; opacity: 0; transform: translateY(40px); transition: opacity .5s, transform .7s cubic-bezier(.2, 1, .3, 1); pointer-events: none; }
@@ -260,7 +260,7 @@ body:not(.ready) .hero * { animation-play-state: paused; }
 .socials a { text-decoration: none; font: 600 0.78rem var(--sans); letter-spacing: .14em; text-transform: uppercase; padding: 10px 16px; border-radius: 999px; background: var(--lilac-soft); }
 .socials a:hover { background: var(--lilac); }
 .order-badge { position: relative; width: min(80vw, 380px); aspect-ratio: 1; margin: 0 auto; display: grid; place-items: center; text-decoration: none; }
-.order-badge svg { position: absolute; inset: 0; width: 100%; height: 100%; animation: turn 18s linear infinite; }
+.order-badge svg { position: absolute; left: 0; top: 0; width: 100%; height: 100%; transform-origin: 50% 50%; animation: turn 18s linear infinite; }
 .order-badge svg text { font: 600 17px var(--sans); letter-spacing: 6px; fill: var(--plum); text-transform: uppercase; }
 .order-badge .core { width: 58%; aspect-ratio: 1; border-radius: 50%; background: var(--plum); color: var(--cream); display: grid; place-items: center; text-align: center;
   box-shadow: 0 0 0 8px var(--cream), 0 0 0 10px var(--gold), 0 30px 50px -20px rgba(76, 35, 80, .6); transition: transform .35s cubic-bezier(.2, 1.6, .4, 1); }
