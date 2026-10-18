@@ -195,7 +195,7 @@ body:not(.ready) .hero * { animation-play-state: paused; }
   .ch { justify-content: flex-start; }
   .ch h2 { font-size: 2rem; margin-top: .1em; }
   .ch .script { font-size: 1.15rem; margin-bottom: 10px; }
-  .size { padding: 7px 11px; } .size strong { font-size: 1.1rem; }
+  .size { padding: 7px 8px; } .size strong { font-size: .98rem; white-space: nowrap; }
   .sizes { margin-bottom: 12px; gap: 7px; }
   .flavours { margin-bottom: 14px; }
   .ch .btn { align-self: flex-start; }
@@ -526,7 +526,8 @@ function progress(el) {
 function frame() {
   const y = scrollY;
   nav.classList.toggle('solid', y > 40);
-  pill.classList.toggle('show', y > innerHeight * 0.7);
+  const busy = ['rings', 'games'].some(id => { const r = document.getElementById(id).getBoundingClientRect(); return r.top < innerHeight * .5 && r.bottom > innerHeight * .5; });
+  pill.classList.toggle('show', y > innerHeight * 0.7 && !busy);
   if (!reduce && y < innerHeight * 1.2) floaters.forEach(f => { f.style.translate = `0 ${y * +f.dataset.speed}px`; f.style.rotate = `${y * +f.dataset.speed * 0.06}deg`; });
   if (reduce) return;
   for (const s of scenes) {
